@@ -66,10 +66,13 @@ class UpdateThread(Thread):
 
 
 class CertStreamThread(Thread):
+    CERTSTREAM_URL = 'wss://certstream.calidog.io'
+
     def __init__(self, q, *args, **kwargs):
         self.q = q
         self.c = CertStreamClient(
-            self.process, skip_heartbeats=True, on_open=None, on_error=None)
+            self.process, skip_heartbeats=True, url=self.CERTSTREAM_URL,
+            on_open=None, on_error=None)
 
         super().__init__(*args, **kwargs)
 
